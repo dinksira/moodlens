@@ -6,7 +6,7 @@ def apply_mood_filter(image, mood, intensity):
     mood: str
     intensity: float (0.0 - 1.0)
     """
-
+    
     img = image.copy()
 
     if mood == "happy":
