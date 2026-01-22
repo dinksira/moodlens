@@ -3,17 +3,11 @@ from PIL import Image
 from mood import interpret_mood
 from filters import apply_mood_filter
 
-# -----------------------------
-# Page configuration
-# -----------------------------
 st.set_page_config(page_title="MoodLens", layout="centered")
 
 st.title("MoodLens")
 st.subheader("Turn your mood into a visual style")
 
-# -----------------------------
-# User inputs
-# -----------------------------
 uploaded_image = st.file_uploader(
     "Upload an image",
     type=["jpg", "jpeg", "png"]
@@ -33,17 +27,11 @@ intensity = st.slider(
 
 apply_button = st.button("Apply Mood Filter")
 
-# -----------------------------
-# Display original image
-# -----------------------------
 if uploaded_image:
     image = Image.open(uploaded_image).convert("RGB")
     st.markdown("### Original Image")
     st.image(image, use_container_width=True)
 
-# -----------------------------
-# Apply mood filter
-# -----------------------------
 if apply_button and uploaded_image:
     detected_mood = interpret_mood(mood_text)
 
@@ -60,8 +48,5 @@ if apply_button and uploaded_image:
     st.markdown("### Processed Image")
     st.image(processed_image, use_container_width=True)
 
-# -----------------------------
-# Empty state guidance
-# -----------------------------
 if apply_button and not uploaded_image:
     st.warning("Please upload an image first.")
